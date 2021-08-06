@@ -16,9 +16,14 @@ RUN python setup.py install
 
 # Copy and execute server script
 COPY food_volume_estimation_app.py .
-ENTRYPOINT ["python", "food_volume_estimation_app.py", \
-            "--depth_model_architecture", "models/depth_architecture.json", \
-            "--depth_model_weights", "models/depth_weights.h5", \
-            "--segmentation_model_weights", "models/segmentation_weights.h5", \
-            "--density_db_source"]
+#ENTRYPOINT ["python", "food_volume_estimation_app.py", \
+#            "--depth_model_architecture", "models/depth_architecture.json", \
+#            "--depth_model_weights", "models/depth_weights.h5", \
+#            "--segmentation_model_weights", "models/segmentation_weights.h5", \
+#            "--density_db_source"]
 
+ENTRYPOINT ["python", "food_volume_estimation_app.py", \
+            "--depth_model_architecture", "models/fine_tune_food_videos/monovideo_fine_tune_food_videos.json", \
+            "--depth_model_weights", "models/fine_tune_food_videos/monovideo_fine_tune_food_videos.h5", \
+            "--segmentation_model_weights", "models/segmentation/mask_rcnn_food_segmentation.h5", \
+            "--density_db_source", "/density_DB_v2_0_final-1__1_.xlsx"]
